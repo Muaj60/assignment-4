@@ -103,3 +103,47 @@ document.addEventListener("click", function (event) {
     CalculateCount();
   }
 });
+
+
+allBtn.addEventListener("click", function () {
+  currentFilter = "all";
+  for (let card of allCard) {
+    card.style.display = "block";
+  }
+  emptyBox.classList.add("hidden");
+  CalculateCount();
+});
+
+//Interview button
+interviewBtn.addEventListener("click", function () {
+  currentFilter = "Interview";
+  let showing = 0;
+  for (let card of allCard) {
+    if (interviewList.includes(card)) {
+      card.style.display = "block";
+      showing++;
+    } else {
+      card.style.display = "none";
+    }
+  }
+  emptyBox.classList.toggle("hidden", showing !== 0);
+  CalculateCount();
+});
+
+//Rejected button
+rejectedBtn.addEventListener("click", function () {
+  currentFilter = "Rejected";
+  let showing = 0;
+  for (let card of allCard) {
+    if (rejectedList.includes(card)) {
+      card.style.display = "block";
+      showing++;
+    } else {
+      card.style.display = "none";
+    }
+  }
+  emptyBox.classList.toggle("hidden", showing !== 0);
+  CalculateCount();
+});
+
+
