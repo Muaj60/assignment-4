@@ -24,7 +24,45 @@
             font-family: "Geist", sans-serif;
         }
 
-       
+        .job-card {
+            transition: all 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(183, 163, 163, 0.326);
+        }
+
+        .interview-btn,
+        .rejected-btn {
+            transition: all 0.4s ease;
+        }
+
+        .interview-btn:hover,
+        .rejected-btn:hover {
+            transform: translateY(-2px), scale(1.5);
+            box-shadow: 0 5px 15px rgba(18, 15, 15, 0.219);
+        }
+
+        #filter-all:hover,
+        #filter-interview:hover,
+        #filter-rejected:hover {
+              transform: translateY(-2px), scale(1.5);
+            box-shadow: 0 5px 15px rgba(18, 15, 15, 0.219);
+        }
+         #filter-all,
+        #filter-interview,
+        #filter-rejected {
+           transition: all 0.4s ease;
+        }
+
+        .fa-trash-can{
+            transition: all 0.4s ease; 
+        }
+        .fa-trash-can:hover{
+                transform: translateY(-2px), scale(1.5);
+            box-shadow: 0 5px 15px rgba(43, 41, 167, 0.219);
+        }
     </style>
 </head>
 
