@@ -46,3 +46,60 @@ function CalculateCount() {
   }
 }
 CalculateCount();
+
+//Event delegation
+document.addEventListener("click", function (event) {
+  if (
+    event.target.classList.contains("interview-btn") ||
+    event.target.classList.contains("rejected-btn")
+  ) {
+    let card = event.target.closest(".job-card");
+    let status = card.querySelector(".status");
+
+    interviewList = interviewList.filter((item) => item !== card);
+    rejectedList = rejectedList.filter((item) => item !== card);
+
+    interviewList = removeArray(interviewList, card);
+    rejectedList = removeArray(rejectedList, card);
+
+    if (event.target.classList.contains("interview-btn")) {
+      interviewList.push(card);
+      status.innerText = "Interview";
+      status.className =
+        "status rounded-md bg-green-100 px-3 py-1 text-xs font-medium text-green-700";
+    } else {
+      rejectedList.push(card);
+      status.innerText = "Rejected";
+      status.className =
+        "status rounded-md bg-red-100 px-3 py-1 text-xs font-medium text-red-700";
+    }
+    if (currentFilter == "Interview" && !interviewList.includes(card)) {
+      card.style.display = "none";
+      emptyBox.classList.remove('hidden')
+    }
+    if (currentFilter === "Rejected" && !rejectedList.includes(card)) {
+      card.style.display = "none";
+      emptyBox.classList.remove('hidden')
+    }
+
+    CalculateCount();
+  }
+//Delete part
+  if (event.target.closest(".fa-trash-can")) {
+    let card = event.target.closest(".job-card");
+    if (currentFilter == "Interview") {
+      interviewList = removeArray(interviewList, card);
+      emptyBox.classList.remove("hidden");
+      card.style.display = "none";
+    } else if (currentFilter == "Rejected") {
+      rejectedList = removeArray(rejectedList, card);
+      emptyBox.classList.remove("hidden");
+      card.style.display = "none";
+    } else {
+      interviewList = removeArray(interviewList, card);
+      rejectedList = removeArray(rejectedList, card);
+      card.remove();
+    }
+    CalculateCount();
+  }
+});
